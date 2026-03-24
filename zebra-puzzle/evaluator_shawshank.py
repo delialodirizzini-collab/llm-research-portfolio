@@ -1,4 +1,8 @@
 def evaluate(response):
+    """ Scores LLM responses against an unseen variant but preserving the Zebra puzzle logic. 
+    Returns a float between 0 and 1 representing the proportion of correct answers. 
+    Handles malformed or non-JSON responses . """
+    
     import json
 
     solution = {
