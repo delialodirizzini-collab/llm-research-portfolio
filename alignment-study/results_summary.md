@@ -1,4 +1,4 @@
-# LLM Alignment Profiles — Comparative Study
+# LLM Alignment Profiles — Comparison across 3 models
 
 ## Research Question
 Do LLMs of different architectures and training display measurably and qualitatively different alignment profiles when responding to moral dilemmas?
