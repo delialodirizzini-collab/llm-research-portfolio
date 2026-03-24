@@ -1,0 +1,26 @@
+def evaluate(response):
+    import json
+
+    solution = {
+        "1": {"cell_type": "plexiglass", "criminal": "murderer", "job": "farm", "tattoo": "dragon", "contraband": "shank"},
+        "2": {"cell_type": "asbestos", "criminal": "arsonist", "job": "laundry", "tattoo": "anchor", "contraband": "rock hammer"},
+        "3": {"cell_type": "padded", "criminal": "con-man", "job": "workshop", "tattoo": "skull", "contraband": "cell phone"},
+        "4": {"cell_type": "brick", "criminal": "kidnapper", "job": "library", "tattoo": "snake", "contraband": "metal file"},
+        "5": {"cell_type": "reinforced steel", "criminal": "thief", "job": "kitchen", "tattoo": "heart", "contraband": "drugs"}
+    }
+
+    try:
+        clean = response.text.replace("```json", "").replace("```", "").strip()
+        parsed = json.loads(clean)
+    except:
+        return 0
+
+    score = 0
+    for pos in ["1","2","3","4","5"]:
+        if pos not in parsed:
+            continue
+        for attr in ["cell_type","criminal","job","tattoo","contraband"]:
+            if attr in parsed[pos] and parsed[pos][attr].lower().strip() == solution[pos][attr]:
+                score += 1
+
+    return score / 25
