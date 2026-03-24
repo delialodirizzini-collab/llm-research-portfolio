@@ -1,4 +1,11 @@
-ef evaluate(response):
+
+
+
+def evaluate(response):
+    """ Scores LLM responses against the correct, widely available online Zebra puzzle solution. 
+    Returns a float between 0 and 1 representing the proportion of correct answers. 
+    Handles malformed or non-JSON responses . """
+    
     import json
 
     solution = {
@@ -20,6 +27,7 @@ ef evaluate(response):
         if pos not in parsed:
             continue
         for attr in ["color","nationality","drink","cigarette","pet"]:
+             # Each of 25 attribute slots contributes 1/25 (4%) to the final score
             if attr in parsed[pos] and parsed[pos][attr].lower().strip() == solution[pos][attr]:
                 score += 1
 
